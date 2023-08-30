@@ -9,6 +9,7 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
 
+
   const companyNames = [
     'Google',
     'Amazon',
@@ -18,6 +19,9 @@ export default function HomePage() {
     'Tesla',
     'Apple',
   ];
+
+
+
 
 const fetchArticles = async () => {
   try {
@@ -33,19 +37,19 @@ const fetchArticles = async () => {
     const uniqueArticles = newArticles.filter(
       (article, index, self) => index === self.findIndex(a => a.url === article.url)
     );
-      console.log("Unique articles array:" + uniqueArticles)
     setNewsData(prevNewsData => [...prevNewsData, ...uniqueArticles]);
-    console.log("News data state:" + newsData)
     setLoading(false);
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
     setLoading(false);
   }
 };
 
-useEffect(() => {
-  fetchArticles(); // Fetch initial articles
-}, []);
+
+  useEffect(() => {
+    fetchArticles()
+  }, [page])
+
 
 
 

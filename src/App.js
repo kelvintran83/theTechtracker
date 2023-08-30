@@ -3,11 +3,9 @@ import './App.css';
 import HeaderNav from "./components/Header/HeaderNav";
 import Header from "./components/Header/Header"
 import HomePage from "./components/Pages/HomePage"
-import React, { useState, useEffect, useRef} from 'react'
+import React from 'react'
 
 function App() {
-
-
 
 
   return (
