@@ -1,6 +1,6 @@
 .article-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 20px;
   padding: 20px;
 }
@@ -63,7 +63,7 @@
 
 @media screen and (max-width: 768px) {
   .article-container {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     padding: 10px;
   }
 }
