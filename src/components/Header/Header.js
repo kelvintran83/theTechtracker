@@ -2,7 +2,7 @@ import React, {useEffect, useState, useRef} from "react";
 import './Header.css';
 
   /*
-    No longer using the Alpha Vantage API due to limited requests (5 per minute), unable to use due without premium, hopefully in the future with an available monthly budget this feature can be enabled. For now the code will be commented and dummy tracker used instead
+    No longer using the Alpha Vantage API due to limited requests (5 per minute), unable to use without premium, hopefully in the future with an available monthly budget this feature can be enabled. For now the code will be commented and dummy tracker used instead
   */
  export default function Header() {
 
@@ -129,8 +129,8 @@ import './Header.css';
         <p className="change">
           <span>{stockSymbols[currentChangeIndex]}  </span>
           {dummyStockData[stockSymbols[currentChangeIndex]] &&
-          dummyStockData[stockSymbols[currentChangeIndex]][currentDate] &&
-          dummyStockData[stockSymbols[currentChangeIndex]][currentDate]["1. open"]} USD
+          dummyStockData[stockSymbols[currentChangeIndex]]["2023-08-31"] &&
+          dummyStockData[stockSymbols[currentChangeIndex]]["2023-08-31"]["1. open"]} USD
         </p>
       </div>
       <div className="title-section">      
