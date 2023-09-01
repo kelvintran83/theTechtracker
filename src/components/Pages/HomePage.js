@@ -79,7 +79,7 @@ export default function HomePage({articles, formatDescription }) {
               <p>{new Date(article.publishedAt).toLocaleDateString()}</p>
               <p>{article.source.name}</p>
             </div>
-            <a href={article.url}>Read more</a>
+            <a target="_blank" href={article.url}>Read more</a>
           </div>
         ))}
         {loading && <div className="loading-indicator">Loading...</div>}

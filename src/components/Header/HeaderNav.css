@@ -1,7 +1,7 @@
 .header-nav {
   text-align: center;
   box-sizing: border-box;
-  border-top: 1px solid rgba(192,192,192,0.36);
+  border-top: 1px solid rgba(192, 192, 192, 0.36);
 }
 
 
@@ -12,3 +12,12 @@ ul li {
   cursor: pointer;
 }
 
+
+
+.search {
+  padding: 15px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align:center;
+  margin-top: 20px;
+}

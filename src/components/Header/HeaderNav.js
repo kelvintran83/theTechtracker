@@ -18,6 +18,7 @@ const companyNames = [
 export default function HeaderNav({ onSearch }) {
   const [searchKeywords, setSearchKeywords] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [inputFocused, setInputFocused] = useState(false);
 
   const debouncedAPICall = debounce(searchTerm => {
     if (searchTerm.trim() === "") {
@@ -30,7 +31,7 @@ export default function HeaderNav({ onSearch }) {
 
     const companyQuery = companyNames.join(" OR ");
 
-    const apiUrl = `https://newsapi.org/v2/everything?q=${companyQuery} ${keywordQuery}&apiKey=${apiKey}&pageSize=${pageSize}`;
+    const apiUrl = `https://newsapi.org/v2/everything?q=${companyQuery} ${keywordQuery}&apiKey=${apiKey}&pageSize=${pageSize}&sortBy=relevancy&language=en`;
 
     fetch(apiUrl)
       .then(response => response.json())
@@ -52,22 +53,46 @@ export default function HeaderNav({ onSearch }) {
     debouncedAPICall(searchTerm);
   };
 
+    useEffect(() => {
+    if (searchKeywords.trim() === "") {
+      setSearchResults([]);
+      return;
+    }
+
+    // Rest of your code...
+
+  }, [searchKeywords]);
+
+
+  const handleInputFocus = () => {
+    setInputFocused(true);
+  };
+
+  const handleInputBlur = () => {
+    setInputFocused(false);
+  };
 
 
 return (
     <div className="header-nav">
-      <ul>
-        {companyNames.map((companyName, index) => (
-          <li key={index}>{companyName}</li>
-        ))}
-      </ul>
-      <input
-        type="text"
-        value={searchKeywords}
-        onChange={handleSearch}
-        placeholder="Search articles..."
-      />
-
+      <div className="nav-section">
+        <ul className="company-list">
+          {companyNames.map((companyName, index) => (
+            <li key={index}>{companyName}</li>
+          ))}
+        </ul>
+        <div className="search-container">
+          <input
+            className="search"
+            type="text"
+            value={searchKeywords}
+            onChange={handleSearch}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur} 
+            placeholder={inputFocused ? "" : "Search trending articles..."}
+          />
+        </div>
+      </div>
       <div className="article-container">
         {searchResults.map(article => (
           <div key={article.url} className="article">
@@ -79,7 +104,7 @@ return (
               <p>{new Date(article.publishedAt).toLocaleDateString()}</p>
               <p>{article.source.name}</p>
             </div>
-            <a href={article.url}>Read more</a>
+            <a target="_blank" href={article.url}>Read more</a>
           </div>
         ))}
       </div>
