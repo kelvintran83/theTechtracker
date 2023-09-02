@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {debounce} from "lodash";
+import {Link} from "react-router-dom"
 import "./HeaderNav.css";
 
-const apiKey = "2a8a8b489e2e43b0af552d15e840cc38";
+const apiKey = "ff014538be754c0b84af12098f3a6483";
 const pageSize = 5;
 
 const companyNames = [
@@ -59,8 +60,6 @@ export default function HeaderNav({ onSearch }) {
       return;
     }
 
-    // Rest of your code...
-
   }, [searchKeywords]);
 
 
@@ -72,14 +71,22 @@ export default function HeaderNav({ onSearch }) {
     setInputFocused(false);
   };
 
+  const style = {
+    "textDecoration" : "none", "color" : "black"
+  }
 
 return (
     <div className="header-nav">
       <div className="nav-section">
         <ul className="company-list">
-          {companyNames.map((companyName, index) => (
-            <li key={index}>{companyName}</li>
-          ))}
+          
+          <li><Link to="/amazon" style={style}>Amazon</Link></li>
+          <li><Link to="/nvidia" style={style}>NVIDIA</Link></li>
+          <li><Link to="/google" style={style}>Google</Link></li>
+          <li><Link to="/meta" style={style}>Meta</Link></li>
+          <li><Link to="/microsoft" style={style}>Microsoft</Link></li>
+          <li><Link to="/tesla" style={style}>Tesla</Link></li>
+          <li><Link to="/apple" style={style}>Apple</Link></li>
         </ul>
         <div className="search-container">
           <input

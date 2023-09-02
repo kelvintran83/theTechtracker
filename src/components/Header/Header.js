@@ -1,4 +1,5 @@
 import React, {useEffect, useState, useRef} from "react";
+import {BrowserRouter, Routes, Route, Outlet, Link} from "react-router-dom"
 import './Header.css';
 
   /*
@@ -113,8 +114,8 @@ import './Header.css';
 
 
   return(
+
     <header>
-      
       <div className="stock-section">
         <div className="date-section">
           <h3>Today's Date: {currentDate}</h3>
@@ -133,20 +134,25 @@ import './Header.css';
           dummyStockData[stockSymbols[currentChangeIndex]]["2023-08-31"]["1. open"]} USD
         </p>
       </div>
-      <div className="title-section">      
-        <div className="header-icon">
-          <div className="circle">
-            <span className="icon-text">tTt</span>
-          </div>
-          <span className="site-title">the Tech tracker</span>
-        </div>
-      </div>
-
+        <Link to="/" style={{ "textDecoration" : "none"}}>
+          <span >
+            <div className="title-section">      
+              <div className="header-icon">
+                <div className="circle">
+                  <span className="icon-text">tTt</span>
+                </div>
+                <span className="site-title">the Tech tracker</span>
+              </div>
+            </div>
+          </span>
+        </Link>
+      
       <div className="user-section">
         <button className="sign-up-button">Sign up</button>
         <button className="log-in-button">Log in </button>
       </div>
     </header>
+
   )
 
 
