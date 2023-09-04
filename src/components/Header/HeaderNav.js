@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {debounce} from "lodash";
-import {Link} from "react-router-dom"
+import {Link, useLocation} from "react-router-dom"
 import "./HeaderNav.css";
 
-const apiKey = "ff014538be754c0b84af12098f3a6483";
+const apiKey = "2a8a8b489e2e43b0af552d15e840cc38";
 const pageSize = 5;
 
 const companyNames = [
@@ -20,6 +20,7 @@ export default function HeaderNav({ onSearch }) {
   const [searchKeywords, setSearchKeywords] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [inputFocused, setInputFocused] = useState(false);
+  const location = useLocation()
 
   const debouncedAPICall = debounce(searchTerm => {
     if (searchTerm.trim() === "") {
@@ -63,6 +64,7 @@ export default function HeaderNav({ onSearch }) {
   }, [searchKeywords]);
 
 
+
   const handleInputFocus = () => {
     setInputFocused(true);
   };
@@ -89,15 +91,17 @@ return (
           <li><Link to="/apple" style={style}>Apple</Link></li>
         </ul>
         <div className="search-container">
-          <input
-            className="search"
-            type="text"
-            value={searchKeywords}
-            onChange={handleSearch}
-            onFocus={handleInputFocus}
-            onBlur={handleInputBlur} 
-            placeholder={inputFocused ? "" : "Search trending articles..."}
-          />
+          {(location.pathname !== "/login" && location.pathname !== "/signup") && (
+            <input
+              className="search"
+              type="text"
+              value={searchKeywords}
+              onChange={handleSearch}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur} 
+              placeholder={inputFocused ? "" : "Search trending articles..."}
+            />
+            )}
         </div>
       </div>
       <div className="article-container">

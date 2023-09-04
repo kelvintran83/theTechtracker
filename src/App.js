@@ -4,6 +4,8 @@ import HeaderNav from './components/Header/HeaderNav';
 import Header from './components/Header/Header';
 import HomePage from './components/Pages/HomePage';
 import CompanyPage from './components/Pages/CompanyPage';
+import SignUp from './components/Pages/SignUpPage';
+import LogIn from './components/Pages/LogInPage';
 import {Route, Router, Routes} from 'react-router-dom'
 
 
@@ -31,9 +33,16 @@ function App() {
             }/>
             <Route path="/:companyName" exact element={
               <CompanyPage  articles={searchResults} formatDescription={formatDescription}/>
-            
-            
             }/>
+
+            <Route path="/signup" element={
+              <SignUp />
+            }/>
+
+            <Route path="/login" element={
+              <LogIn />
+            }/>
+
           </Routes> 
       </div>
   )

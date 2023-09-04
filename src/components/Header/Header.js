@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useRef} from "react";
 import {BrowserRouter, Routes, Route, Outlet, Link} from "react-router-dom"
 import './Header.css';
+import { useAuth} from "../../contexts/AuthContexts"
 
   /*
     No longer using the Alpha Vantage API due to limited requests (5 per minute), unable to use without premium, hopefully in the future with an available monthly budget this feature can be enabled. For now the code will be commented and dummy tracker used instead
@@ -11,6 +12,7 @@ import './Header.css';
   const [currentDate, setCurrentDate] = useState("")
   const [stockData, setStockData] = useState({})
   const intervalRef=useRef(null)
+  const { currentUser, logout } = useAuth();
 
   // const stockChanges = [
   //   ["apple",'2.5%'],
@@ -118,7 +120,7 @@ import './Header.css';
     <header>
       <div className="stock-section">
         <div className="date-section">
-          <h3>Today's Date: {currentDate}</h3>
+          <h3 className="date-text">Today's Date: {currentDate}</h3>
         </div>
         {/* <p className="change">
           {stockData[stockSymbols[currentChangeIndex]] &&
@@ -147,10 +149,24 @@ import './Header.css';
           </span>
         </Link>
       
-      <div className="user-section">
-        <button className="sign-up-button">Sign up</button>
-        <button className="log-in-button">Log in </button>
-      </div>
+
+       {currentUser ? (
+          
+          <div className="user-section">
+
+            <Link to="/saved-articles" >
+              <button className="saved-articles-button">Saved Articles</button>
+            </Link>            
+            <button onClick={logout} className="log-out-button">
+              Log Out
+            </button>
+          </div>
+        ) : (
+          <div className="user-section">
+        <Link to="/signup"><button className="sign-up-button">Sign up</button></Link>
+        <Link to="/login"><button className="log-in-button">Log in </button></Link>
+         </div>
+        )}
     </header>
 
   )

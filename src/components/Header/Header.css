@@ -1,10 +1,10 @@
 header {
   text-align: center;
-  /* 'Black Ops One', cursive; */
+
   display: flex;
   justify-content: space-between;
   padding-top: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 24px;
 }
 
 
@@ -19,7 +19,7 @@ header {
   width: 60px;
   height: 60px;
   background-color: #3498db;
-  /* Blue color */
+
   border-radius: 80%;
   display: flex;
   align-items: center;
@@ -41,8 +41,12 @@ header {
   font-family: 'Black Ops One', cursive;
 }
 
-.date-section {
-  font-size: 10px;
+.date-section{
+  margin-top: 10px;
+}
+
+.date-text {
+  font-size: 15px;
 }
 
 .stock-section {
@@ -61,8 +65,10 @@ header {
 
 }
 
+
+
 .sign-up-button,
-.log-in-button {
+.log-in-button, .saved-articles-button, .log-out-button{
   color: white;
   border: none;
   font-family: 'Inter';
@@ -74,19 +80,24 @@ header {
   border-radius: 2px;
 }
 
-.sign-up-button {
+.sign-up-button, .saved-articles-button {
   background-color: #232324;
 }
 
-.log-in-button {
+.log-in-button, .log-out-button {
   background-color: #f1f1f1;
   color: black;
 }
 
-.sign-up-button:hover {
+.sign-up-button:hover, .saved-articles-button:hover{
   background-color: rgba(64,64,64,0.8);
 }
 
-.log-in-button:hover{
+.log-in-button:hover, .log-out-button:hover{
   background-color: rgba(204, 204, 204, 0.8);
 }
+
+.saved-articles-button{
+  font-size: 11px
+}
+
