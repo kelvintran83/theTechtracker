@@ -61,6 +61,14 @@
   font-weight: bold;
 }
 
+.info img{
+  width: 20px;
+  height: 20px;
+  margin-left:10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 768px) {
   .article-container {
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
