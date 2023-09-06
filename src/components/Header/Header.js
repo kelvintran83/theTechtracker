@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from "react";
-import {BrowserRouter, Routes, Route, Outlet, Link} from "react-router-dom"
+import {Link} from "react-router-dom"
 import './Header.css';
 import { useAuth} from "../../contexts/AuthContexts"
 
@@ -10,7 +10,7 @@ import { useAuth} from "../../contexts/AuthContexts"
 
   const [currentChangeIndex, setCurrentChangeIndex] = useState(0)
   const [currentDate, setCurrentDate] = useState("")
-  const [stockData, setStockData] = useState({})
+  // const [stockData, setStockData] = useState({})
   const intervalRef=useRef(null)
   const { currentUser, logout } = useAuth();
 
@@ -154,12 +154,13 @@ import { useAuth} from "../../contexts/AuthContexts"
           
           <div className="user-section">
 
-            <Link to="/saved-articles" >
+            <Link to="/savedarticles" >
               <button className="saved-articles-button">Saved Articles</button>
             </Link>            
-            <button onClick={logout} className="log-out-button">
+            <Link to ="/"><button onClick={logout} className="log-out-button">
               Log Out
             </button>
+            </Link>
           </div>
         ) : (
           <div className="user-section">

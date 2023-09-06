@@ -6,7 +6,8 @@ import HomePage from './components/Pages/HomePage';
 import CompanyPage from './components/Pages/CompanyPage';
 import SignUp from './components/Pages/SignUpPage';
 import LogIn from './components/Pages/LogInPage';
-import {Route, Router, Routes} from 'react-router-dom'
+import SavedArticles from './components/Pages/SavedArticlesPage'
+import {Route, Routes} from 'react-router-dom'
 
 
 function App() {
@@ -41,6 +42,9 @@ function App() {
 
             <Route path="/login" element={
               <LogIn />
+            }/>
+            <Route path="/savedarticles" element={
+              <SavedArticles formatDescription={formatDescription}/>
             }/>
 
           </Routes> 

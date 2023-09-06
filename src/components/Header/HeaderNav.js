@@ -16,7 +16,7 @@ const companyNames = [
   "Apple"
 ];
 
-export default function HeaderNav({ onSearch }) {
+export default function HeaderNav({}) {
   const [searchKeywords, setSearchKeywords] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [inputFocused, setInputFocused] = useState(false);
@@ -82,16 +82,16 @@ return (
       <div className="nav-section">
         <ul className="company-list">
           
-          <li><Link to="/amazon" style={style}>Amazon</Link></li>
-          <li><Link to="/nvidia" style={style}>NVIDIA</Link></li>
-          <li><Link to="/google" style={style}>Google</Link></li>
-          <li><Link to="/meta" style={style}>Meta</Link></li>
-          <li><Link to="/microsoft" style={style}>Microsoft</Link></li>
-          <li><Link to="/tesla" style={style}>Tesla</Link></li>
-          <li><Link to="/apple" style={style}>Apple</Link></li>
+          <Link to="/amazon" style={style}><li>Amazon</li></Link>
+          <Link to="/nvidia"style={style}><li> NVIDIA</li></Link>
+          <Link to="/google" style={style}><li>Google</li></Link>
+          <Link to="/meta" style={style}><li>Meta</li></Link>
+          <Link to="/microsoft" style={style}><li>Microsoft</li></Link>
+          <Link to="/tesla" style={style}><li>Tesla</li></Link>
+          <Link to="/apple" style={style}><li>Apple</li></Link>
         </ul>
         <div className="search-container">
-          {(location.pathname !== "/login" && location.pathname !== "/signup") && (
+          {(location.pathname !== "/login" && location.pathname !== "/signup" && location.pathname !== "/savedarticles") && (
             <input
               className="search"
               type="text"

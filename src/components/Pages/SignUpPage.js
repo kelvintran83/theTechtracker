@@ -1,8 +1,9 @@
 import React, {useRef, useState} from "react"
 import {Form, Button, Card, Container, Alert} from "react-bootstrap"
-import {useAuth, AuthProvider} from "../../contexts/AuthContexts"
+import {useAuth} from "../../contexts/AuthContexts"
 import "bootstrap/dist/css/bootstrap.min.css"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
+
 
 
 
@@ -13,6 +14,7 @@ const  passwordConfirmRef = useRef()
 const {signup} = useAuth()
 const [error, setError] = useState("")
 const [loading, setLoading] = useState(false)
+const navigate = useNavigate()
 
 async function handleSubmit(e) {
   e.preventDefault()
@@ -25,6 +27,7 @@ async function handleSubmit(e) {
      setError("")
      setLoading(true)
      await signup(userRef.current.value, passwordRef.current.value)
+     navigate("/")
 
   } catch (error){
     setError("Error creating account: " + error)

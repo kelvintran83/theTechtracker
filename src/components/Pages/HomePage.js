@@ -152,9 +152,12 @@ export default function HomePage({articles, formatDescription }) {
           )
         )
       } else {
+         const keywords = article.title.split(' ')
+
         await setDoc(articleRef, {
           user: currentUser.uid, 
           url: articleId,
+          keywords: keywords
         })
         const originalURLRef = doc(db, 'hashedToOriginalURLs', articleId);
         await setDoc(originalURLRef, {
@@ -162,7 +165,7 @@ export default function HomePage({articles, formatDescription }) {
         })
         setSavedArticles((prevSavedArticles) => [
           ...prevSavedArticles,
-          { hashedURL: articleId, originalURL: article.url },
+          { hashedURL: articleId, originalURL: article.url, keywords: keywords },
         ])
       }
     } catch (error) {
