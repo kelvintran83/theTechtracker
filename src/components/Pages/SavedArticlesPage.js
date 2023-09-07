@@ -5,6 +5,7 @@ import {doc, setDoc, deleteDoc, getDoc, getDocs,  collection, query, where} from
 import StarIcon from '../../assets/star.svg'
 import EmptyStarIcon from '../../assets/star-empty.svg'
 
+
 export default function SavedArticlesPage({formatDescription}) {
 
   const {currentUser} = useAuth()
@@ -125,7 +126,7 @@ export default function SavedArticlesPage({formatDescription}) {
         setSavedArticles((prevSavedArticles) => [
           ...prevSavedArticles,
           { hashedURL: articleId, originalURL: article.url, keywords },
-        ]);
+        ])
       }
     } catch (error) {
       console.error("Error saving article:", error);
@@ -134,7 +135,7 @@ export default function SavedArticlesPage({formatDescription}) {
 
   function generateIdFromUrl(url) {
     const sanitisedUrl = url.replace(/[/\\.#$]/g, '_');
-    return hashCode(sanitisedUrl);
+    return hashCode(sanitisedUrl)
   }
 
   function hashCode(str) {
@@ -143,7 +144,7 @@ export default function SavedArticlesPage({formatDescription}) {
       const char = str.charCodeAt(i);
       hash = (hash << 5) - hash + char;
     }
-    return String(hash);
+    return String(hash)
   }
 
   return (

@@ -27,7 +27,7 @@ function App() {
   return (
       <div className="App">
         <Header />
-        <HeaderNav onSearch={handleSearch} />   
+        <HeaderNav onSearch={handleSearch} formatDescription={formatDescription}/>   
           <Routes>    
             <Route path="/" exact element={
               <HomePage articles={searchResults} formatDescription={formatDescription} />
