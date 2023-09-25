@@ -11,12 +11,16 @@ import {Route, Routes} from 'react-router-dom'
 
 
 function App() {
+  // Persist the search results between pages
   const [searchResults, setSearchResults] = useState([]);
+  const apiKey= process.env.REACT_APP_API_KEY
 
+  // Function for HeaderNav's search bar to use and set the search state for the app
   function handleSearch(searchTerm) {
     setSearchResults(searchTerm);
   }
 
+  // Utility function for reducing the description of articles before rendering
   function formatDescription(desc) {
     if (desc) {
       return desc.substring(0, 200);
@@ -27,13 +31,13 @@ function App() {
   return (
       <div className="App">
         <Header />
-        <HeaderNav onSearch={handleSearch} formatDescription={formatDescription}/>   
+        <HeaderNav onSearch={handleSearch} formatDescription={formatDescription} apiKey={apiKey}/>   
           <Routes>    
             <Route path="/" exact element={
-              <HomePage articles={searchResults} formatDescription={formatDescription} />
+              <HomePage articles={searchResults} formatDescription={formatDescription} apiKey={apiKey}/>
             }/>
             <Route path="/:companyName" exact element={
-              <CompanyPage  articles={searchResults} formatDescription={formatDescription}/>
+              <CompanyPage  articles={searchResults} formatDescription={formatDescription} apiKey={apiKey}/>
             }/>
 
             <Route path="/signup" element={
@@ -44,7 +48,7 @@ function App() {
               <LogIn />
             }/>
             <Route path="/savedarticles" element={
-              <SavedArticles formatDescription={formatDescription}/>
+              <SavedArticles formatDescription={formatDescription} apiKey={apiKey}/>
             }/>
 
           </Routes> 

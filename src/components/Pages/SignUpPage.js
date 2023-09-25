@@ -16,12 +16,15 @@ const [error, setError] = useState("")
 const [loading, setLoading] = useState(false)
 const navigate = useNavigate()
 
+// This function handles the form submit process, It will pass the parameters of passwordRef (password) and passwordConfirmRef (conmfirm password) to the firebase useAuth.signup method to authenticate login. If successful it will use React navigate to the home page, if not the error will be displayed.
+
 async function handleSubmit(e) {
   e.preventDefault()
 
   if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
   }
+
   try {     
     
      setError("")
@@ -34,7 +37,7 @@ async function handleSubmit(e) {
   }
   setLoading(false)
 }
-
+  // Simple bootstrap login form UI
   return (
       <Container className="d-flex align-items-center justify-content-center" >
         <div className="w-50" style={{minWidth:"500px"}}>

@@ -11,6 +11,7 @@ const [error, setError] = useState("")
 const [loading, setLoading] = useState(false)
 const navigate = useNavigate();
 
+  // This function handles the form submit process, It will pass the parameters of userRef (email) and passwordRef (password) to the firebase useAuth method to authenticate login. If successful it will use React navigate to the home page, if not the error will be displayed
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -24,7 +25,8 @@ const navigate = useNavigate();
     }
     setLoading(false);
   }
-
+ 
+  // Simple bootstrap login form UI
   return (
     <Container className="d-flex align-items-center justify-content-center" >
       <div className="w-100" style={{ maxWidth: "400px" }}>

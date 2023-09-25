@@ -4,7 +4,7 @@ import './Header.css';
 import { useAuth} from "../../contexts/AuthContexts"
 
   /*
-    No longer using the Alpha Vantage API due to limited requests (5 per minute), unable to use without premium, hopefully in the future with an available monthly budget this feature can be enabled. For now the code will be commented and dummy tracker used instead
+    No longer using the Alpha Vantage API due to limited requests (5 per minute), unable to use without premium, hopefully in the future with an available monthly budget this feature can be enabled. For now the code will be commented and dummy tracker used instead. The functionality does work with the Alpha Vantage API.
   */
  export default function Header() {
 
@@ -14,19 +14,12 @@ import { useAuth} from "../../contexts/AuthContexts"
   const intervalRef=useRef(null)
   const { currentUser, logout } = useAuth();
 
-  // const stockChanges = [
-  //   ["apple",'2.5%'],
-  //   ["microsoft", '1%'],
-  //   ["amazon", '2.5%'],
-  //   ["meta",'1%'],
-  //   ["nvidia",'2.5%'],
-  //   ["google",'1%']
-  // ]
 
    const stockSymbols = ["AAPL", "MSFT", "AMZN", "META", "NVDA", "GOOGL"];
   //  const apiKey = "LKPBJE8527DH4CKG";
+  //  this apikey is for Alpha Vantage not newsAPI
 
-    const dummyStockData = {
+    const dummyStockData = { //hard code company data as of 08/31/2023
     AAPL: {
       "2023-08-31": {
         "1. open": "187.87"
@@ -73,33 +66,41 @@ import { useAuth} from "../../contexts/AuthContexts"
     setCurrentDate(formattedDate);
   }, [])
 
-  // const stockTracker = `${stockChanges[currentChangeIndex][0]} ${stockChanges[currentChangeIndex][1]}`;
+  /*  Below is the original stock tracker, it fetches JSON datathrough the get endpoint. This is based on the stockSymbol array that is commented. The map function should return 7 responses which is executed and stored in fetchdData aray.
 
-  // useEffect(() => {
-  //   const fetchDataForAllSymbols = async () => {
-  //     const fetchDataPromises = stockSymbols.map(symbol => {
-  //       const apiUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
-  //       return fetch(apiUrl)
-  //         .then(response => response.json())
-  //         .then(data => ({ symbol, data }))
-  //         .catch(error => {
-  //           console.error(`Error fetching stock data for ${symbol}:`, error);
-  //           return { symbol, data: null };
-  //         });
-  //     });
 
-  //     const fetchedData = await Promise.all(fetchDataPromises);
-  //     const dataMap = fetchedData.reduce((map, { symbol, data }) => {
-  //       map[symbol] = data;
-  //       return map;
-  //     }, {});
+  useEffect(() => {
+    const fetchDataForAllSymbols = async () => {
+      const fetchDataPromises = stockSymbols.map(symbol => {
+        const apiUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
+        return fetch(apiUrl)
+          .then(response => response.json())
+          .then(data => ({ symbol, data }))
+          .catch(error => {
+            console.error(`Error fetching stock data for ${symbol}:`, error);
+            return { symbol, data: null };
+          });
+      });
+      
+      // The reduce function maps the fetchedData array based on the symbol value. The symbol value acts as a key and data are the values returned from the symbol key
+      const fetchedData = await Promise.all(fetchDataPromises);
+      const dataMap = fetchedData.reduce((map, { symbol, data }) => {
+        map[symbol] = data;
+        return map;
+      }, {});
 
-  //     setStockData(dataMap);
-  //     console.log("Fetched Data:", dataMap);
-  //   };
+      setStockData(dataMap);
+      console.log("Fetched Data:", dataMap);
+    };
 
-  //   fetchDataForAllSymbols();
-  // }, []);
+    fetchDataForAllSymbols();
+  }, []);
+
+
+  */
+
+
+    // use React's reference functionality, the function inside setInterval runs every 3 seconds. The function increases the index of the current index in currentChangeIndex by 1. By using modulo the index should reset past the length of the stockSymbols array, creating a cycle. The intervalRef is needed to be able to call clearInterval when unmounting the useEffect
 
     useEffect(() => {
 
@@ -116,6 +117,8 @@ import { useAuth} from "../../contexts/AuthContexts"
 
 
   return(
+
+    //contains JSX for rendering a stockTracker based on original implementation with Alpha Vantage as well as the live version using the dummyStockData array
 
     <header>
       <div className="stock-section">

@@ -6,13 +6,15 @@ import StarIcon from '../../assets/star.svg'
 import EmptyStarIcon from '../../assets/star-empty.svg'
 
 
-export default function SavedArticlesPage({formatDescription}) {
+export default function SavedArticlesPage({formatDescription, apiKey}) {
 
   const {currentUser} = useAuth()
   const [savedArticles, setSavedArticles] = useState([])
   const [renderArticles, setRenderArticles] = useState([])
-  const apiKey = '2a8a8b489e2e43b0af552d15e840cc38'
 
+  /*
+    This loadSavedArticles function is slightly different from the others used. This is what caused issues when refactoring at the end of the project as the code was not reusable. The main differences is that keywords was that it retrieves the keywords from of a saved article from the firestore db, which is necessary for when making API calls to query to correct article. The for loop syntax is also different which should have been made consistent with the other "loadSavedArticles". This will be revised later after deploying the working version.
+  */
    async function loadSavedArticles() {
       try {
         if (currentUser) {
@@ -51,13 +53,13 @@ export default function SavedArticlesPage({formatDescription}) {
         console.error('Error loading saved articles:', error);
       }
     }
-
+  // Load saved articles when the page is loaded.
   useEffect(() => {
     loadSavedArticles();
   }, []);
 
 
-
+  // A function that fetches the saved articles based on savedArticles keywords and saves them into response. The constant "savedArticleData" uses a promise function to wait until all API queries are completed before continuing. After the array is flattened into the constant "articles" and saved into the renderArticles state.
   async function fetchSavedArticlesData() {
     try {
       const pageSize = 1
@@ -87,13 +89,18 @@ export default function SavedArticlesPage({formatDescription}) {
       console.error('Error fetching saved articles data:', error);
     }
   }
-
+  // Fetches savedArticles to update the renderArticles state each time the savedArticles state changes
   useEffect(() => {
     if (savedArticles.length > 0) {
       fetchSavedArticlesData()
     }
   }, [savedArticles])
 
+  /*
+      This function is for when a user is interacting with a star image inside the rendered article.  If a user is logged in, the function will get the hashed article URL and check if it is in the savedArticles collection. If it exists it will then delete the document from the collection therefore removing it from savedArticles for the user. If it does not exist it will instead save the document with user id, hashed URL and keywords of article title (for fetching the articles through API in SavedArticles page). It will also save the document's hashed URL and original URL inside the collection 'hashedToOriginalURLs'.  Finally it will be added to the savedArticles state array.
+
+      **an issue I noticed is that hashedURL is not a unique identifier across many users. I would like to fix this in the future but as of right now it won't be fixed just to demonstrate that the functionality works between firestore.
+  */
   async function toggleSaveArticles(article) {
     if (!currentUser) {
       return
@@ -133,12 +140,12 @@ export default function SavedArticlesPage({formatDescription}) {
     }
   }
 
-  function generateIdFromUrl(url) {
+  function generateIdFromUrl(url) { // Utility function for toggleSaveArticles. Replaces special characters with an underscore and then hashes the URL.
     const sanitisedUrl = url.replace(/[/\\.#$]/g, '_');
     return hashCode(sanitisedUrl)
   }
 
-  function hashCode(str) {
+  function hashCode(str) { // Utilty  function for simple hashing of URL. This hash was not made by me. It goes through each character index of the string and shifts the bits to the left by 5, get this result and subtracts it by the original bit and adds the character code at the end. Overall this function could be any hashing algorithm as long as it prevents collisions when hashing many URLs. Finally it converts the numerical bits into a String as a hash.
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
       const char = str.charCodeAt(i);
