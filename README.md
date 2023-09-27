@@ -11,6 +11,7 @@ theTechtracker is a web application built with React that allows users to explor
 - Click on an article to read the full content on the source website.
 - Account functionality enabled for simple register and login.
 - Favourite articles and access them easily through the saved articles page.
+- Stock tracker of daily stock value of each tech company (for more info refer to Alpha Vantage API in "Technologies Used" section).
 
 
 
