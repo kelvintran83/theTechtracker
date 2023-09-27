@@ -1,74 +1,57 @@
 # theTechtracker
 
-=======
+theTechtracker is a web application built with React that allows users to explore and read the latest technology news articles on the most popular technology companies (Google, Meta, Apple, Amazon, NVIDIA, Microsoft and Tesla ). It utilises the News API to fetch and display articles from various sources, providing users with a convenient way to stay up-to-date with the latest tech news. Users may make accounts to log in and favourite articles so they can access them easily whenever they want to.
 
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features
 
-## Available Scripts
+- Main page with feed of relevant and latest articles.
+- Search articles by a search engine, filtering articles based on keywords as well as through which company by the navigation bar.
+- View detailed information about each article, including the title, description, source, and publication date. C
+- Click on an article to read the full content on the source website.
+- Account functionality enabled for simple register and login.
+- Favourite articles and access them easily through the saved articles page.
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To run this project locally, follow these steps:
 
-### `npm test`
+1. Clone the repository: `git clone https://github.com/yourusername/theTechtracker.git`
+2. Navigate to the project directory: `cd theTechtracker`
+3. Install dependencies: `npm install`
+4. Start the development server: `npm start`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
 
-### `npm run build`
+- Visit the app in your web browser.
+- Use the search bar to look for specific articles or explore the latest news.
+- Click on an article to read the full content on the source website.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies Used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React: A JavaScript library for building user interfaces.
+- News API: An API that provides access to a wide range of news articles from different sources.
+- Alpha Vantage API: Used for stock value data on companies to display on the website's stock tracker. No longer used in final version due to API constraints for free plan (5 API calls a minute). Using hard-coded data to show the concept.
+- Bootstrap for sign in and register UI forms.
+- Firestore and Firebase for authentication and databases for account and article information.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Contributing
 
-### `npm run eject`
+Contributions are welcome! If you would like to contribute to this project, please follow these guidelines:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature/your-feature-name`
+3. Commit your changes: `git commit -m 'Add some feature'`
+4. Push to the branch: `git push origin feature/your-feature-name`
+5. Submit a pull request.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## License
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+This project is licensed under the [MIT License](LICENSE).
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Contact
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Kelvin Tran (https://github.com/kelvintran83)
+- kelvintran8383@gmail.com
