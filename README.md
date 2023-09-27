@@ -1,6 +1,6 @@
 # theTechtracker
 
-theTechtracker is a web application built with React that allows users to explore and read the latest technology news articles on the most popular technology companies (Google, Meta, Apple, Amazon, NVIDIA, Microsoft and Tesla ). It utilises the News API to fetch and display articles from various sources, providing users with a convenient way to stay up-to-date with the latest tech news. Users may make accounts to log in and favourite articles so they can access them easily whenever they want to.
+theTechtracker is a web application built with React that allows users to explore and read the latest technology news articles on the most popular technology companies (Google, Meta, Apple, Amazon, NVIDIA, Microsoft and Tesla ). It utilises the News API to fetch and display articles from various sources, providing users with a convenient way to stay up-to-date with the latest tech news. Users may make accounts to log in and favourite articles so they can access them easily whenever they want to. This application is not deployed due to News API's development plan not enabling usage when hosted on a browser instead of locally. If you would like to demo this application it unfortunately can only ben run locally for now until News API updates their development plan.
 
 
 ## Features
